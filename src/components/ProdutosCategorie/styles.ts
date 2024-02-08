@@ -6,6 +6,7 @@ export const Card = styled.div`
   margin-top: 100px;
   font-family: roboto;
   background-color: #e66767;
+  cursor: pointer;
 `
 
 export const Descricao = styled.p`
@@ -37,4 +38,77 @@ export const Botao = styled.button`
   font-weight: bold;
 
   cursor: pointer;
+`
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
+
+  &.visivel {
+    display: flex;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.72);
+  }
+`
+
+export const ModalContent = styled.div`
+  position: relative;
+  z-index: 1;
+  background-color: #e66767;
+  width: 1024px;
+  height: 344px;
+  border-radius: 20px;
+`
+
+export const PizzaModal = styled.div`
+  display: flex;
+  color: white;
+  font-family: roboto;
+
+  div {
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 30px;
+
+    h2 {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  img {
+    padding-top: 5px;
+    padding-left: 20px;
+    width: 280px;
+    height: 280px;
+  }
+
+  button {
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #e66767;
+  }
 `

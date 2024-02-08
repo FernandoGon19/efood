@@ -1,10 +1,15 @@
 import styled from 'styled-components'
 
 export const Card = styled.div`
-  height: 217px;
+  height: 317px;
   width: 472px;
   margin-top: 200px;
   font-family: roboto;
+
+  .capa {
+    height: 250px;
+    width: 100%;
+  }
 `
 
 export const Descricao = styled.p`

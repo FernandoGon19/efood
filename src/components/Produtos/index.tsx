@@ -2,6 +2,7 @@ import { Botao, Card, Conteudo, Descricao, Titulo } from './styles'
 
 import estrela from '../assets/estrela.png'
 import { Link } from 'react-router-dom'
+import Gallery from '../Gallery'
 
 type Props = {
   title: string
@@ -11,23 +12,25 @@ type Props = {
 }
 
 const Produto = ({ title, description, image, nota }: Props) => (
-  <Card>
-    <Descricao>
-      <img src={image} alt={title} />
-      <Conteudo>
-        <Titulo>
-          <h2>{title}</h2>
-          <h2>
-            {nota} <img src={estrela} alt="estrela" />
-          </h2>
-        </Titulo>
-        <p>{description}</p>
-        <Botao>
-          <Link to="/Categories">Saiba mais</Link>
-        </Botao>
-      </Conteudo>
-    </Descricao>
-  </Card>
+  <>
+    <Card>
+      <Descricao>
+        <img className="capa" src={image} alt={title} />
+        <Conteudo>
+          <Titulo>
+            <h2>{title}</h2>
+            <h2>
+              {nota} <img src={estrela} alt="estrela" />
+            </h2>
+          </Titulo>
+          <p>{description}</p>
+          <Botao>
+            <Link to="/Categories">Saiba mais</Link>
+          </Botao>
+        </Conteudo>
+      </Descricao>
+    </Card>
+  </>
 )
 
 export default Produto
