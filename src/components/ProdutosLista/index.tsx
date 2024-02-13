@@ -5,11 +5,22 @@ import macarrao from '../assets/Macarrao.png'
 import { Lista } from './styles'
 import { useEffect, useState } from 'react'
 
-export type Pratos = {
+export type Restaurantes = {
+  id: number
   titulo: string
+  destacado: boolean
+  tipo: string
   avaliacao: string
   descricao: string
   capa: string
+  cardapio: {
+    foto: string
+    preco: number
+    id: number
+    nome: string
+    descricao: string
+    porcao: string
+  }
 }
 
 const formataTexto = (descricao: string) => {
@@ -20,23 +31,23 @@ const formataTexto = (descricao: string) => {
 }
 
 const ProdutoLista = () => {
-  const [pratos, setPratos] = useState<Pratos[]>([])
+  const [restaurantes, setRestaurantes] = useState<Restaurantes[]>([])
 
   useEffect(() => {
     fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes').then(
-      (res) => res.json().then((res) => setPratos(res))
+      (res) => res.json().then((res) => setRestaurantes(res))
     )
   })
 
   return (
     <Lista>
-      {pratos.map((prato) => (
-        // eslint-disable-next-line react/jsx-key
+      {restaurantes.map((restaurante) => (
         <Produto
-          title={prato.titulo}
-          image={prato.capa}
-          nota={prato.avaliacao}
-          description={formataTexto(prato.descricao)}
+          key={restaurante.id}
+          title={restaurante.cardapio.nome}
+          image={restaurante.capa}
+          nota={restaurante.avaliacao}
+          description={formataTexto(restaurante.descricao)}
         ></Produto>
       ))}
     </Lista>
