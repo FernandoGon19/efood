@@ -1,88 +1,36 @@
+import { useParams } from 'react-router-dom'
 import Banner from '../../components/BannerCategorie'
 import HeaderCategorie from '../../components/HeaderCategorie'
 import ProdutoCategoria from '../../components/ProdutosCategorie'
 
-import pizza from '../../components/assets/PizzaCategoria.png'
 import { useEffect, useState } from 'react'
-
-type Cardapio = {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
-  porcao: string
-}
+import { Restaurantes } from '../../components/ProdutosLista'
 
 const Categories = () => {
-  const [cardapio, setCardapio] = useState<Cardapio[]>([])
+  const { id } = useParams()
+  const [restaurantes, setRestaurante] = useState<Restaurantes[]>([])
 
   useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes').then(
-      (res) => res.json().then((res) => setCardapio(res))
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`).then(
+      (res) => res.json().then((res) => setRestaurante(res))
     )
-  })
+  }, [id])
 
-  console.log(cardapio)
+  console.log(restaurantes)
 
   return (
     <div>
-      {cardapio.map((pratos) => (
-        <div key={pratos.id}>
-          <h1>{pratos.nome}</h1>
-        </div>
-      ))}
-
       <HeaderCategorie></HeaderCategorie>
       <Banner></Banner>
       <div className="container grid">
-        <ProdutoCategoria
-          title="Pizza Marguerita"
-          description="A clássica Marguerita: molho de tomate suculento,
-      mussarela derretida, manjericão fresco e um toque de azeite.
-      Sabor e simplicidade!"
-          image={pizza}
-        ></ProdutoCategoria>
-
-        <ProdutoCategoria
-          title="Pizza Marguerita"
-          description="A clássica Marguerita: molho de tomate suculento,
-      mussarela derretida, manjericão fresco e um toque de azeite.
-      Sabor e simplicidade!"
-          image={pizza}
-        ></ProdutoCategoria>
-
-        <ProdutoCategoria
-          title="Pizza Marguerita"
-          description="A clássica Marguerita: molho de tomate suculento,
-      mussarela derretida, manjericão fresco e um toque de azeite.
-      Sabor e simplicidade!"
-          image={pizza}
-        ></ProdutoCategoria>
-
-        <ProdutoCategoria
-          title="Pizza Marguerita"
-          description="A clássica Marguerita: molho de tomate suculento,
-      mussarela derretida, manjericão fresco e um toque de azeite.
-      Sabor e simplicidade!"
-          image={pizza}
-        ></ProdutoCategoria>
-
-        <ProdutoCategoria
-          title="Pizza Marguerita"
-          description="A clássica Marguerita: molho de tomate suculento,
-      mussarela derretida, manjericão fresco e um toque de azeite.
-      Sabor e simplicidade!"
-          image={pizza}
-        ></ProdutoCategoria>
-
-        <ProdutoCategoria
-          title="Pizza Marguerita"
-          description="A clássica Marguerita: molho de tomate suculento,
-      mussarela derretida, manjericão fresco e um toque de azeite.
-      Sabor e simplicidade!"
-          image={pizza}
-        ></ProdutoCategoria>
+        {restaurantes.map((restaurante) => (
+          <ProdutoCategoria
+            key={restaurante.cardapio.id}
+            title={restaurante.cardapio.nome}
+            description={restaurante.cardapio.descricao}
+            image={restaurante.cardapio.foto}
+          ></ProdutoCategoria>
+        ))}
       </div>
     </div>
   )

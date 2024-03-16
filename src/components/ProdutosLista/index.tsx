@@ -37,17 +37,20 @@ const ProdutoLista = () => {
     fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes').then(
       (res) => res.json().then((res) => setRestaurantes(res))
     )
-  })
+  }, [])
+
+  console.log(typeof restaurantes)
 
   return (
     <Lista>
       {restaurantes.map((restaurante) => (
         <Produto
           key={restaurante.id}
-          title={restaurante.cardapio.nome}
+          title={restaurante.titulo}
           image={restaurante.capa}
           nota={restaurante.avaliacao}
           description={formataTexto(restaurante.descricao)}
+          id1={restaurante.id}
         ></Produto>
       ))}
     </Lista>

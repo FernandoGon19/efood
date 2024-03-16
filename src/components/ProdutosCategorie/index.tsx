@@ -9,9 +9,6 @@ import {
   Titulo
 } from './styles'
 
-import estrela from '../assets/estrela.png'
-import { Link } from 'react-router-dom'
-import Gallery from '../Gallery'
 import pizza from '../assets/PizzaCategoria.png'
 import { useState } from 'react'
 
