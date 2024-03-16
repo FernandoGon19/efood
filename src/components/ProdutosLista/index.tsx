@@ -13,15 +13,7 @@ export type Restaurantes = {
   avaliacao: string
   descricao: string
   capa: string
-  cardapio: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
-}
+  cardapio:
 
 const formataTexto = (descricao: string) => {
   if (descricao.length > 205) {
