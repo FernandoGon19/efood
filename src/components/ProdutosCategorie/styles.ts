@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const Card = styled.div`
-  height: 358px;
+  height: 458px;
   width: 320px;
-  margin-top: 100px;
+  margin-top: 20px;
   font-family: roboto;
   background-color: #e66767;
   cursor: pointer;
@@ -17,6 +17,7 @@ export const Descricao = styled.p`
   img {
     padding: 5px;
     width: 97%;
+    height: 250px;
   }
 `
 

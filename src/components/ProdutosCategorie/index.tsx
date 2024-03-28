@@ -9,20 +9,28 @@ import {
   Titulo
 } from './styles'
 
-import pizza from '../assets/PizzaCategoria.png'
 import { useState } from 'react'
+import { formataTexto } from '../ProdutosLista'
 
 type Props = {
   title: string
   description: string
   image: string
+  porcao: string
+  preco: number
 }
 
 type GalleryItem = {
   IsVisible: boolean
 }
 
-const ProdutoCategoria = ({ title, description, image }: Props) => {
+const ProdutoCategoria = ({
+  title,
+  description,
+  image,
+  porcao,
+  preco
+}: Props) => {
   const [modal, setModal] = useState<GalleryItem>({
     IsVisible: false
   })
@@ -39,27 +47,16 @@ const ProdutoCategoria = ({ title, description, image }: Props) => {
         <ModalContent>
           <PizzaModal>
             <div>
-              <img src={pizza} alt="" />
+              <img src={image} alt="" />
             </div>
             <div>
-              <h2>Pizza Marguerita</h2>
-              <p>
-                A pizza Margherita é uma pizza clássica da culinária italiana,
-                reconhecida por sua simplicidade e sabor inigualável. Ela é
-                feita com uma base de massa fina e crocante, coberta com molho
-                de tomate fresco, queijo mussarela de alta qualidade, manjericão
-                fresco e azeite de oliva extra-virgem. A combinação de sabores é
-                perfeita, com o molho de tomate suculento e ligeiramente ácido,
-                o queijo derretido e cremoso e as folhas de manjericão frescas,
-                que adicionam um toque de sabor herbáceo. É uma pizza simples,
-                mas deliciosa, que agrada a todos os paladares e é uma ótima
-                opção para qualquer ocasião.
-              </p>
+              <h2>{title}</h2>
+              <p>{description}</p>
               <br />
               <br />
-              <p>Serve: de 2 a 3 pessoas</p>
+              <p>Serve: {porcao}</p>
               <br />
-              <button>Adicionar ao carrinho - R$ 60,00</button>
+              <button>Adicionar ao carrinho - R$ {preco}</button>
             </div>
           </PizzaModal>
         </ModalContent>
@@ -82,7 +79,7 @@ const ProdutoCategoria = ({ title, description, image }: Props) => {
           <img src={image} alt={title} />
           <Conteudo>
             <Titulo>{title}</Titulo>
-            <p>{description}</p>
+            <p>{formataTexto(description)}</p>
             <Botao>Adicionar ao carrinho</Botao>
           </Conteudo>
         </Descricao>

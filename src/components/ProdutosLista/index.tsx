@@ -1,9 +1,15 @@
 import Produto from '../Produtos'
-
-import sushi from '../assets/Sushi.png'
-import macarrao from '../assets/Macarrao.png'
 import { Lista } from './styles'
 import { useEffect, useState } from 'react'
+
+export type Cardapio = {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
 
 export type Restaurantes = {
   id: number
@@ -13,9 +19,10 @@ export type Restaurantes = {
   avaliacao: string
   descricao: string
   capa: string
-  cardapio:
+  cardapio: Cardapio[]
+}
 
-const formataTexto = (descricao: string) => {
+export const formataTexto = (descricao: string) => {
   if (descricao.length > 205) {
     return descricao.slice(0, 203) + '...'
   }

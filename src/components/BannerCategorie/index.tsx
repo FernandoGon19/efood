@@ -1,11 +1,19 @@
-import { Imagem } from './styles'
+import { DivBanner, DivEfeito, TextoBanner, TituloBanner } from './styles'
 
-import banner from '../assets/apresentacao.png'
+type Props = {
+  title: string
+  image: string
+  tipo: string
+}
 
-const Banner = () => (
-  <div>
-    <Imagem style={{ backgroundImage: `url(${banner})` }}></Imagem>
-  </div>
+const Banner = ({ title, image, tipo }: Props) => (
+  <DivBanner style={{ backgroundImage: `url(${image})` }}>
+    <div className="container">
+      <TextoBanner>{tipo}</TextoBanner>
+      <TituloBanner>{title}</TituloBanner>
+      <DivEfeito />
+    </div>
+  </DivBanner>
 )
 
 export default Banner

@@ -8,7 +8,7 @@ import { Restaurantes } from '../../components/ProdutosLista'
 
 const Categories = () => {
   const { id } = useParams()
-  const [restaurantes, setRestaurante] = useState<Restaurantes[]>([])
+  const [restaurantes, setRestaurante] = useState<Restaurantes>()
 
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`).then(
@@ -16,19 +16,27 @@ const Categories = () => {
     )
   }, [id])
 
+  if (!restaurantes) return <p>oi</p>
+
   console.log(restaurantes)
 
   return (
     <div>
       <HeaderCategorie></HeaderCategorie>
-      <Banner></Banner>
+      <Banner
+        title={restaurantes.titulo}
+        image={restaurantes.capa}
+        tipo={restaurantes.tipo}
+      ></Banner>
       <div className="container grid">
-        {restaurantes.map((restaurante) => (
+        {restaurantes.cardapio.map((restaurante) => (
           <ProdutoCategoria
-            key={restaurante.cardapio.id}
-            title={restaurante.cardapio.nome}
-            description={restaurante.cardapio.descricao}
-            image={restaurante.cardapio.foto}
+            key={restaurante.id}
+            title={restaurante.nome}
+            description={restaurante.descricao}
+            image={restaurante.foto}
+            porcao={restaurante.porcao}
+            preco={restaurante.preco}
           ></ProdutoCategoria>
         ))}
       </div>
